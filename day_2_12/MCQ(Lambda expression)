@@ -1,0 +1,535 @@
+1.	What is the output of the Following code?
+public class Java8 {
+	public static void main(String[] args) {
+		() -> System.out.println("NareshIT");
+		
+	}
+}
+Answer:
+Compile time error “Syntax error, insert "AssignmentOperator Expression" to 
+complete Expression”. Lambda expressions always have to be assigned to a 
+reference type of Functional Interafces.
+
+OUTPUT:=>
+import java.util.function.Consumer;
+
+public class Java8 {
+	
+		public static void main(String[] args) {
+			Consumer<String> msg=(message) -> System.out.println(message);
+			msg.accept("NareshIt");
+		}
+	}
+___________________________________________________________________
+2.What is the output of the following parameterized lambda function?
+public class Java8 {
+	public static void main(String[] args) {
+		(a) -> System.out.println("NareshIT" + a+1);
+	}
+}
+Answer:
+Compile time error “Syntax error, insert "AssignmentOperator Expression" 
+to complete Expression”. Lambda expressions always have to be assigned to 
+a reference type of Functional Interafces.
+
+OUTPUT:=>
+import java.util.function.Consumer;
+
+public class Java8 {
+	public static void main(String[] args) {
+	Consumer msg=	(a) -> System.out.println("NareshIT" + a+1);
+	msg.accept(3);
+	}
+}
+___________________________________________________________________
+3.What is the output of the following parameterized lambda function with variable declaration?
+public class Java8 {
+	public static void main(String[] args) {
+		(int a) -> System.out.println("NareshIT" + a+1);
+	}
+}
+Answer:
+Compile time error “Syntax error, insert "AssignmentOperator Expression" to 
+complete Expression”. Lambda expressions always have to be assigned to 
+a reference type of Functional Interafces.
+
+OUTPUT:=>import java.util.function.*;
+
+public class Java8 {
+	public static void main(String[] args) {
+		Consumer<Integer> msg=( a) -> System.out.println("NareshIT" + (a+1));
+		
+		msg.accept(5);
+	}
+} 
+___________________________________________________________________
+4.Is this code successfully compiled or not?
+interface NIT
+{
+	public void myInterface(int a);
+}
+
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (a) -> a+1;
+		System.out.println(nit);
+	}
+}
+Answer: 
+No, it compile time error “void method cannot return the value”.
+
+
+___________________________________________________________________
+5.Is this code successfully compiled or not?
+interface NIT
+{
+	public int myInterface(int a); 
+	public int myInterface(int a,int b);
+}
+
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (a) -> a+1;
+		System.out.println(nit);
+	}
+}
+Answer: 
+No, it compile time error “The target type of this expression must be a functional interface”.
+
+
+___________________________________________________________________
+6.Is this code successfully compiled or not?
+interface NIT
+{
+	public int myInterface(int a);
+}
+
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (a) -> a+1;
+	}
+}
+Answer:
+Compiled Successfully
+
+
+___________________________________________________________________
+7.What is the output of the following code?
+interface NIT
+{
+	public int myInterface(int a);
+}
+
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (a) -> a+1;
+		int i = nit.myInterface(6);
+		System.out.println(i);
+	}
+}
+Answer:
+7
+
+___________________________________________________________________
+8.What is the output of the following code?
+interface NIT
+{
+	public int myInterface(int a);
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (int a) -> a*5;
+		int i = nit.myInterface(6);
+		System.out.println(i);
+	}
+}
+Answer: 
+30
+
+
+___________________________________________________________________
+9.What is the output of the following code?
+interface NIT
+{
+	public int myInterface(int a);
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (String a) -> a*5;
+		//NIT nit = ( a) -> a*5;
+		int i = nit.myInterface(6);
+		System.out.println(i);
+	}
+}
+Answer:
+Compile time error, “Lambda expression's parameter is expected to be of type int” because we provide integer as parameter in myInterface method.
+
+
+___________________________________________________________________
+10.What is the output of the following code?
+interface NIT
+{
+	void myInterface(int a);
+	
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (int a) -> System.out.println(a+5);
+	}
+}
+Answer:
+NO Output
+
+
+___________________________________________________________________
+11.What is the output of the following code?
+interface NIT
+{
+	void myInterface(int a);
+	
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (int a) -> System.out.println(a+5);
+		nit.myInterface(15);
+	}
+}
+
+OUTPUT:=>20
+___________________________________________________________________
+12.What is the output of the following code?
+interface NIT
+{
+	void myInterface(int a);
+	void defalutFunction() 
+	{
+		System.out.println("Naresh I Technologies");
+	}
+	
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (int a) -> System.out.println(a/5);
+		nit.myInterface(15);
+	}
+}
+Answer:
+Compile time error “The target type of this expression must be a functional interface” 
+
+
+___________________________________________________________________
+13.What is the output of the following code?
+interface NIT
+{
+	void myInterface(int a);
+	default void defalutFunction() 
+	{
+		System.out.println("Naresh I Technologies");
+	}
+	
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (int a) -> System.out.println(a/5);
+		nit.myInterface(15);
+	}
+}
+Answer:
+3
+
+
+___________________________________________________________________
+14.What is the output of the following code?
+public class Java8 {
+	public static void main(String[] args) {
+		String a = (a) -> {return "NareshITechnologies";};
+	}
+} 
+Answer: 
+Compile time error “The target this type of expression must be a functional interface” 
+
+OUTPUT:=>public class Java8 {
+	public static void main(String[] args) {
+		Supplier<String> a = () -> {return "NareshITechnologies";};
+		System.out.println(a.get());
+	}
+}
+
+___________________________________________________________________
+15.What is the output of the following code?
+interface NIT
+{
+	String myInterface();
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = () -> {return "NareshITechnologies";};		
+	}
+}
+Answer:
+Successfully Run
+
+
+___________________________________________________________________
+16.What is the output of the following code?
+interface NIT
+{
+	String myInterface();
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = () -> {return "NareshITechnologies";};
+		System.out.println(nit.myInterface());
+	}
+}
+Answer:
+NareshITechnologies
+
+
+___________________________________________________________________
+17.What is the output of the following code?
+interface NIT
+{
+	void myInterface(int a, int b);
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (int a, int b) -> System.out.println(a+b);
+		nit.myInterface(5, 10);
+	}
+}
+Answer:
+15
+
+
+___________________________________________________________________
+18.What is the output of the following code?
+interface NIT
+{
+	int myInterface(int a, int b);
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (int a, int b) -> System.out.println(a+b);
+		nit.myInterface(5, 10);
+	}
+}
+Answer:
+Compile time error “Cannot return a void result”
+
+
+___________________________________________________________________
+19.Is this code successfully compiled or not?
+interface NIT
+{
+	int myInterface(int a, int b);
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (int a, int b) ->
+		{
+			return a+b;
+		};
+	}
+}
+Answer:
+Successfully Compiled
+
+
+___________________________________________________________________
+20.Is this code successfully compiled or not?
+interface NIT
+{
+	int myInterface(int a, int b);
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (a, b) ->
+		{
+			int div = a/b;
+			int addition = a+b;
+			return addition;
+		};
+	}
+}
+Answer:
+Successfully Compiled
+
+
+___________________________________________________________________
+21.What is the output of the following code?
+interface NIT
+{
+	int myInterface(int a, int b);
+}
+public class Java8 {
+	int calculate(int i, int j, NIT nit)
+	{
+		return nit.myInterface(i,j);
+	}
+	public static void main(String[] args) {
+		NIT addition = (a,b) -> a+b;
+		NIT multiplication = (a,b) -> a*b;
+		NIT division = (a,b) -> a/b;
+		Java8 java = new Java8();
+		int result = java.calculate(15, 5, multiplication);
+		System.out.println(result);
+	}
+}
+Answer:
+75
+
+
+___________________________________________________________________
+22.What is the output of the following code?
+interface NIT
+{
+	int myInterface(int a, int b);
+}
+public class Java8 {
+	int calculate(int i, int j, NIT nit)
+	{
+		return nit.myInterface(i,j);
+	}
+	public static void main(String[] args) {
+		int result = 0;
+		NIT addition = (a,b) -> a+b;
+		NIT multiplication = (a,b) -> a*b;
+		NIT division = (a,b) -> a/b;
+		Java8 java = new Java8();
+		result = java.calculate(15, 5, multiplication);
+		System.out.println(result);
+		result = java.calculate(result, result, addition);
+		System.out.println(result);
+		result = java.calculate(result, result, division);
+		System.out.println(result);
+	}
+}
+Answer:
+75
+150
+1
+
+
+___________________________________________________________________
+23.What is the output of the following code?
+public class Java8 {
+	interface NIT 
+	{
+		int myInterface(int a, int b); 
+	}
+	
+	public static void main(String[] args) {
+		NIT nit = (int a, int b) -> a/b;
+		int a = nit.myInterface(15, 110);
+		System.out.println(a);
+	}
+}
+Answer:
+3
+
+
+___________________________________________________________________
+24.What is the output of the following code?
+interface NIT
+{
+	String myInterface(String a);
+}
+public class Java8 {
+	public static void main(String[] args) {
+		NIT nit = (a) -> {return a;};
+		System.out.println(nit.myInterface("NIT"));
+	}
+}
+Answer:
+NIT
+
+
+___________________________________________________________________
+25.What is the output of the following code?
+interface Calculate
+{
+	int myinterface(int a, int b);
+}
+
+interface NIT
+{
+	String myInterface(String a);
+}
+public class Java8 {
+	public static void main(String[] args) {
+		Calculate cal = (a) -> a+5;
+		cal.myinterface(1, 5);
+		NIT nit = (a) -> {return a;};
+		System.out.println(nit.myInterface("NIT"));
+	}
+}  
+Answer:
+Compile time error “Lambda expression's signature does not match the signature of the functional interface method myinterface(int, int)”.
+
+
+___________________________________________________________________
+26.What is the output of the following code?
+interface NIT
+{
+	String myInterface(String a);
+}
+public class Java8 {
+	
+	private void operation(int a, int b, Calculate cal) 
+	{
+		System.out.println(cal.myinterface(a, b));
+	}
+	
+	public static void main(String[] args) {
+		Java8 java = new Java8();
+		Calculate cal = (a,b) -> a+b;
+		java.operation(1, 5, cal);
+		cal = (a,b) -> a*b;
+		java.operation(17, 0, cal);
+		NIT nit = (a) -> {return a;};
+		System.out.println(nit.myInterface("NIT"));
+	}
+}
+Answer:
+6
+0
+NIT
+
+
+___________________________________________________________________
+27.What is the output of the following code?
+interface NIT
+{
+	String myInterface(String a);
+}
+public class Java8 {
+	
+	public static void main(String[] args) {
+		
+		//without parameter
+		NIT nit = information -> System.out.println("Welcome to " + information);
+		nit.myInterface("NIT");
+	}
+}
+Answer:
+Compile time error, “Cannot return a void result”
+
+
+___________________________________________________________________
+28.What is the output of the following code?
+interface NIT
+{
+	void myInterface(String a);
+}
+public class Java8 {
+	
+	public static void main(String[] args) {
+		
+		//without parameter
+		NIT nit = information -> System.out.println("Welcome to " + information);
+		nit.myInterface("NIT");
+	}
+}
+Answer:
+Welcome to NIT
